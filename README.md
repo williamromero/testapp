@@ -22,3 +22,26 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+
+rvm install ruby  // will installl the last ruby-2.4.0
+
+
+sudo nginx -t
+
+sudo nginx -t && sudo nginx -s reload
+
+sudo service nginx status
+
+myapp/current/log/production.log
+
+sudo nano /var/log/nginx/error.log
+
+nano /etc/nginx/nginx.conf
+
+sudo netstat -plunt | grep nginx
+

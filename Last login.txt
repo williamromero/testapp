@@ -1,0 +1,497 @@
+Last login: Fri Aug 18 01:17:05 on ttys002
+iMac-de-William:testapp williamromero$ chmod 400 computronics.pem
+iMac-de-William:testapp williamromero$ ssh -i "computronics.pem" ubuntu@ec2-18-220-229-92.us-east-2.compute.amazonaws.com
+The authenticity of host 'ec2-18-220-229-92.us-east-2.compute.amazonaws.com (18.220.229.92)' can't be established.
+ECDSA key fingerprint is SHA256:XWj4yMbtwKwTXRnRwGO6ZXGBTd+PVjucUrAtFfgQpRY.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-18-220-229-92.us-east-2.compute.amazonaws.com,18.220.229.92' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-1031-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Fri Aug 18 07:17:18 2017 from 190.149.53.174
+ubuntu@ip-172-31-3-233:~$ su - deploy
+Password: 
+su: Authentication failure
+ubuntu@ip-172-31-3-233:~$ su - deploy
+Password: 
+deploy@ip-172-31-3-233:~$ sudo service nginx start
+[sudo] password for deploy: 
+deploy@ip-172-31-3-233:~$ packet_write_wait: Connection to 18.220.229.92 port 22: Broken pipe
+iMac-de-William:testapp williamromero$ cap production puma:start
+^C(Backtrace restricted to imported tasks)
+cap aborted!
+Interrupt: 
+
+Tasks: TOP => rvm:check
+(See full trace by running task with --trace)
+iMac-de-William:testapp williamromero$ cap production puma:start
+^C(Backtrace restricted to imported tasks)
+cap aborted!
+Interrupt: 
+
+Tasks: TOP => rvm:check
+(See full trace by running task with --trace)
+iMac-de-William:testapp williamromero$ cap production puma:start
+(Backtrace restricted to imported tasks)
+cap aborted!
+SSHKit::Runner::ExecuteError: Exception while executing as deploy@18.220.229.92: Net::SSH::ConnectionTimeout
+
+Net::SSH::ConnectionTimeout: Net::SSH::ConnectionTimeout
+
+Errno::ETIMEDOUT: Operation timed out - connect(2) for 18.220.229.92:22
+
+Tasks: TOP => rvm:check
+(See full trace by running task with --trace)
+iMac-de-William:testapp williamromero$ git add .
+iMac-de-William:testapp williamromero$ git commit -m "Fix IP address"
+[master a0af2c3] Fix IP address
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+iMac-de-William:testapp williamromero$ git push -u origin master
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 429 bytes | 0 bytes/s, done.
+Total 5 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To github.com:williamromero/testapp.git
+   22fb6ed..a0af2c3  master -> master
+Branch master set up to track remote branch master from origin.
+iMac-de-William:testapp williamromero$ cap production puma:start
+rvm 1.29.2 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io/]
+ruby-2.4.0
+^C(Backtrace restricted to imported tasks)
+cap aborted!
+Interrupt: 
+
+Tasks: TOP => rvm:check
+(See full trace by running task with --trace)
+iMac-de-William:testapp williamromero$ cap production deploy
+  rvm 1.29.2 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io/]
+  ruby-2.4.0
+  ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+  00:00 git:wrapper
+        01 mkdir -p /tmp
+      ✔ 01 deploy@13.59.194.3 0.161s
+        Uploading /tmp/git-ssh-testapp-production-williamromero.sh 100.0%
+        02 chmod 700 /tmp/git-ssh-testapp-production-williamromero.sh
+      ✔ 02 deploy@13.59.194.3 0.161s
+  00:00 git:check
+        01 git ls-remote git@github.com:williamromero/testapp.git HEAD
+        01 a0af2c355cb11c7faae71b71840e6aa577a89013
+        01
+        01 HEAD
+      ✔ 01 deploy@13.59.194.3 0.675s
+  00:01 deploy:check:directories
+        01 mkdir -p /home/deploy/testapp/shared /home/deploy/testapp/releases
+      ✔ 01 deploy@13.59.194.3 0.444s
+  00:01 deploy:check:linked_dirs
+        01 mkdir -p /home/deploy/testapp/shared/bin /home/deploy/testapp/shared/log /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/shared/…
+      ✔ 01 deploy@13.59.194.3 0.161s
+  00:02 deploy:check:make_linked_dirs
+        01 mkdir -p /home/deploy/testapp/shared/config
+      ✔ 01 deploy@13.59.194.3 0.158s
+  00:03 git:clone
+        The repository mirror is at /home/deploy/testapp/repo
+  00:03 git:update
+        01 git remote set-url origin git@github.com:williamromero/testapp.git
+      ✔ 01 deploy@13.59.194.3 0.163s
+        02 git remote update --prune
+        02 Fetching origin
+        02
+        02 remote: Counting objects: 10, done.
+        02
+        02 remote: Compressing objects:  25% (1/4)   
+        02 remote: Compressing objects:  50% (2/4)   
+        02 remote: Compressing objects:  75% (3/4)   
+        02 remote: Compressing objects: 100% (4/4)   
+        02 remote: Compressing objects: 100% (4/4), done.
+        02
+        02 remote: Total 10 (delta 6), reused 8 (delta 4), pack-reused 0
+        02
+        02 Unpacking objects:  10% (1/10)
+        02 Unpacking objects:  20% (2/10)
+        02 Unpacking objects:  30% (3/10)
+        02 Unpacking objects:  40% (4/10)
+        02 Unpacking objects:  50% (5/10)
+        02 Unpacking objects:  60% (6/10)
+        02 Unpacking objects:  70% (7/10)
+        02 Unpacking objects:  80% (8/10)
+        02 Unpacking objects:  90% (9/10)
+        02 Unpacking objects: 100% (10/10)
+        02 Unpacking objects: 100% (10/10), done.
+        02
+        02 From github.com:williamromero/testapp
+        02
+        02    463787e..a0af2c3  master     -> master
+        02
+      ✔ 02 deploy@13.59.194.3 0.827s
+  00:04 git:create_release
+        01 mkdir -p /home/deploy/testapp/releases/20170818081122
+      ✔ 01 deploy@13.59.194.3 0.159s
+        02 git archive master | /usr/bin/env tar -x -f - -C /home/deploy/testapp/releases/20170818081122
+      ✔ 02 deploy@13.59.194.3 0.172s
+  00:05 deploy:set_current_revision
+        01 echo "a0af2c355cb11c7faae71b71840e6aa577a89013" >> REVISION
+      ✔ 01 deploy@13.59.194.3 0.159s
+  00:05 deploy:symlink:linked_files
+        01 mkdir -p /home/deploy/testapp/releases/20170818081122/config
+      ✔ 01 deploy@13.59.194.3 0.161s
+        02 rm /home/deploy/testapp/releases/20170818081122/config/database.yml
+      ✔ 02 deploy@13.59.194.3 0.175s
+        03 ln -s /home/deploy/testapp/shared/config/database.yml /home/deploy/testapp/releases/20170818081122/config/database.yml
+      ✔ 03 deploy@13.59.194.3 0.167s
+        04 ln -s /home/deploy/testapp/shared/config/application.yml /home/deploy/testapp/releases/20170818081122/config/application.yml
+      ✔ 04 deploy@13.59.194.3 0.351s
+  00:07 deploy:symlink:linked_dirs
+        01 mkdir -p /home/deploy/testapp/releases/20170818081122 /home/deploy/testapp/releases/20170818081122/tmp /home/deploy/testapp/releases/20170…
+      ✔ 01 deploy@13.59.194.3 0.459s
+        02 rm -rf /home/deploy/testapp/releases/20170818081122/bin
+      ✔ 02 deploy@13.59.194.3 0.261s
+        03 ln -s /home/deploy/testapp/shared/bin /home/deploy/testapp/releases/20170818081122/bin
+      ✔ 03 deploy@13.59.194.3 0.230s
+        04 rm -rf /home/deploy/testapp/releases/20170818081122/log
+      ✔ 04 deploy@13.59.194.3 0.253s
+        05 ln -s /home/deploy/testapp/shared/log /home/deploy/testapp/releases/20170818081122/log
+      ✔ 05 deploy@13.59.194.3 0.242s
+        06 ln -s /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/releases/20170818081122/tmp/pids
+      ✔ 06 deploy@13.59.194.3 0.159s
+        07 ln -s /home/deploy/testapp/shared/tmp/cache /home/deploy/testapp/releases/20170818081122/tmp/cache
+      ✔ 07 deploy@13.59.194.3 0.607s
+        08 ln -s /home/deploy/testapp/shared/tmp/sockets /home/deploy/testapp/releases/20170818081122/tmp/sockets
+      ✔ 08 deploy@13.59.194.3 0.159s
+        09 ln -s /home/deploy/testapp/shared/vendor/bundle /home/deploy/testapp/releases/20170818081122/vendor/bundle
+      ✔ 09 deploy@13.59.194.3 0.159s
+        10 ln -s /home/deploy/testapp/shared/public/system /home/deploy/testapp/releases/20170818081122/public/system
+      ✔ 10 deploy@13.59.194.3 0.158s
+        11 ln -s /home/deploy/testapp/shared/public/uploads /home/deploy/testapp/releases/20170818081122/public/uploads
+      ✔ 11 deploy@13.59.194.3 0.159s
+        12 ln -s /home/deploy/testapp/shared/public/assets /home/deploy/testapp/releases/20170818081122/public/assets
+      ✔ 12 deploy@13.59.194.3 0.159s
+  00:15 bundler:install
+        01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle install --path /home/deploy/testapp/shared/bundle --without development test --deployment --quiet
+      ✔ 01 deploy@13.59.194.3 3.179s
+  00:18 deploy:assets:precompile
+        01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake assets:precompile
+      ✔ 01 deploy@13.59.194.3 2.469s
+  00:21 deploy:assets:backup_manifest
+        01 mkdir -p /home/deploy/testapp/releases/20170818081122/assets_manifest_backup
+      ✔ 01 deploy@13.59.194.3 0.159s
+        02 cp /home/deploy/testapp/releases/20170818081122/public/assets/.sprockets-manifest-ed003b8f6df3e0dd3a33b988555f8be1.json /home/deploy/testa…
+      ✔ 02 deploy@13.59.194.3 0.161s
+  00:21 deploy:migrate
+        [deploy:migrate] Run `rake db:migrate`
+  00:22 deploy:migrating
+        01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake db:migrate
+      ✔ 01 deploy@13.59.194.3 1.794s
+  00:23 deploy:symlink:release
+        01 ln -s /home/deploy/testapp/releases/20170818081122 /home/deploy/testapp/releases/current
+      ✔ 01 deploy@13.59.194.3 0.158s
+        02 mv /home/deploy/testapp/releases/current /home/deploy/testapp
+      ✔ 02 deploy@13.59.194.3 0.157s
+  00:24 deploy:cleanup
+        Keeping 2 of 3 deployed releases on 13.59.194.3
+        01 rm -rf /home/deploy/testapp/releases/20170818062837
+      ✔ 01 deploy@13.59.194.3 0.178s
+  00:24 deploy:log_revision
+        01 echo "Branch master (at a0af2c355cb11c7faae71b71840e6aa577a89013) deployed as release 20170818081122 by williamromero" >> /home/deploy/tes…
+      ✔ 01 deploy@13.59.194.3 0.161s
+  00:25 puma:start
+        using conf file /home/deploy/testapp/shared/puma.rb
+        01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec puma -C /home/deploy/testapp/shared/puma.rb --daemon
+        01 Puma starting in single mode...
+        01
+        01 * Version 3.9.1 (ruby 2.4.0-p0), codename: Private Caller
+        01
+        01 * Min threads: 0, max threads: 8
+        01
+        01 * Environment: production
+        01
+        01 * Daemonizing...
+        01
+      ✔ 01 deploy@13.59.194.3 0.799s
+
+      
+iMac-de-William:testapp williamromero$ git add .
+iMac-de-William:testapp williamromero$ git commit -m "Last IP modification"
+[master cf7b121] Last IP modification
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+iMac-de-William:testapp williamromero$ git push -u origin master
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 433 bytes | 0 bytes/s, done.
+Total 5 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To github.com:williamromero/testapp.git
+   a0af2c3..cf7b121  master -> master
+Branch master set up to track remote branch master from origin.
+iMac-de-William:testapp williamromero$ cap production puma:start
+rvm 1.29.2 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io/]
+ruby-2.4.0
+ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+00:00 puma:start
+      using conf file /home/deploy/testapp/shared/puma.rb
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec puma -C /home/deploy/testapp/shared/puma.rb --daemon
+      01 Puma starting in single mode...
+      01
+      01 * Version 3.9.1 (ruby 2.4.0-p0), codename: Private Caller
+      01
+      01 * Min threads: 0, max threads: 8
+      01
+      01 * Environment: production
+      01
+      01 * Daemonizing...
+      01
+    ✔ 01 deploy@18.220.229.155 1.072s
+iMac-de-William:testapp williamromero$ cap production deploy
+rvm 1.29.2 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io/]
+ruby-2.4.0
+ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+00:00 git:wrapper
+      01 mkdir -p /tmp
+    ✔ 01 deploy@18.220.229.155 0.153s
+      Uploading /tmp/git-ssh-testapp-production-williamromero.sh 100.0%
+      02 chmod 700 /tmp/git-ssh-testapp-production-williamromero.sh
+    ✔ 02 deploy@18.220.229.155 0.153s
+00:00 git:check
+      01 git ls-remote git@github.com:williamromero/testapp.git HEAD
+      01 cf7b121bddd103d4d9e86083d98ebe5b22624e61 HEAD
+    ✔ 01 deploy@18.220.229.155 0.598s
+00:01 deploy:check:directories
+      01 mkdir -p /home/deploy/testapp/shared /home/deploy/testapp/releases
+    ✔ 01 deploy@18.220.229.155 0.156s
+00:01 deploy:check:linked_dirs
+      01 mkdir -p /home/deploy/testapp/shared/bin /home/deploy/testapp/shared/log /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/shared/…
+    ✔ 01 deploy@18.220.229.155 0.156s
+00:01 deploy:check:make_linked_dirs
+      01 mkdir -p /home/deploy/testapp/shared/config
+    ✔ 01 deploy@18.220.229.155 0.155s
+00:02 git:clone
+      The repository mirror is at /home/deploy/testapp/repo
+00:02 git:update
+      01 git remote set-url origin git@github.com:williamromero/testapp.git
+    ✔ 01 deploy@18.220.229.155 0.159s
+      02 git remote update --prune
+      02 Fetching origin
+      02
+      02 remote: Counting objects: 5, done.
+      02
+      02 remote: Compressing objects: 100% (1/1)   
+      02 remote: Compressing objects: 100% (1/1), done.
+      02
+      02 remote: Total 5 (delta 3), reused 5 (delta 3), pack-reused 0
+      02
+      02 Unpacking objects:  20% (1/5)
+      02 Unpacking objects:  40% (2/5)
+      02 Unpacking objects:  60% (3/5)
+      02 Unpacking objects:  80% (4/5)
+      02 Unpacking objects: 100% (5/5)
+      02 Unpacking objects: 100% (5/5), done.
+      02
+      02 From github.com:williamromero/testapp
+      02
+      02    a0af2c3..cf7b121  master     -> master
+      02
+    ✔ 02 deploy@18.220.229.155 0.711s
+00:03 git:create_release
+      01 mkdir -p /home/deploy/testapp/releases/20170818081937
+    ✔ 01 deploy@18.220.229.155 0.153s
+      02 git archive master | /usr/bin/env tar -x -f - -C /home/deploy/testapp/releases/20170818081937
+    ✔ 02 deploy@18.220.229.155 0.161s
+00:04 deploy:set_current_revision
+      01 echo "cf7b121bddd103d4d9e86083d98ebe5b22624e61" >> REVISION
+    ✔ 01 deploy@18.220.229.155 0.154s
+00:04 deploy:symlink:linked_files
+      01 mkdir -p /home/deploy/testapp/releases/20170818081937/config
+    ✔ 01 deploy@18.220.229.155 0.153s
+      02 rm /home/deploy/testapp/releases/20170818081937/config/database.yml
+    ✔ 02 deploy@18.220.229.155 0.204s
+      03 ln -s /home/deploy/testapp/shared/config/database.yml /home/deploy/testapp/releases/20170818081937/config/database.yml
+    ✔ 03 deploy@18.220.229.155 0.155s
+      04 ln -s /home/deploy/testapp/shared/config/application.yml /home/deploy/testapp/releases/20170818081937/config/application.yml
+    ✔ 04 deploy@18.220.229.155 0.153s
+00:06 deploy:symlink:linked_dirs
+      01 mkdir -p /home/deploy/testapp/releases/20170818081937 /home/deploy/testapp/releases/20170818081937/tmp /home/deploy/testapp/releases/20170…
+    ✔ 01 deploy@18.220.229.155 0.154s
+      02 rm -rf /home/deploy/testapp/releases/20170818081937/bin
+    ✔ 02 deploy@18.220.229.155 0.154s
+      03 ln -s /home/deploy/testapp/shared/bin /home/deploy/testapp/releases/20170818081937/bin
+    ✔ 03 deploy@18.220.229.155 0.153s
+      04 rm -rf /home/deploy/testapp/releases/20170818081937/log
+    ✔ 04 deploy@18.220.229.155 0.159s
+      05 ln -s /home/deploy/testapp/shared/log /home/deploy/testapp/releases/20170818081937/log
+    ✔ 05 deploy@18.220.229.155 0.156s
+      06 ln -s /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/releases/20170818081937/tmp/pids
+    ✔ 06 deploy@18.220.229.155 0.155s
+      07 ln -s /home/deploy/testapp/shared/tmp/cache /home/deploy/testapp/releases/20170818081937/tmp/cache
+    ✔ 07 deploy@18.220.229.155 0.155s
+      08 ln -s /home/deploy/testapp/shared/tmp/sockets /home/deploy/testapp/releases/20170818081937/tmp/sockets
+    ✔ 08 deploy@18.220.229.155 0.185s
+      09 ln -s /home/deploy/testapp/shared/vendor/bundle /home/deploy/testapp/releases/20170818081937/vendor/bundle
+    ✔ 09 deploy@18.220.229.155 0.155s
+      10 ln -s /home/deploy/testapp/shared/public/system /home/deploy/testapp/releases/20170818081937/public/system
+    ✔ 10 deploy@18.220.229.155 0.157s
+      11 ln -s /home/deploy/testapp/shared/public/uploads /home/deploy/testapp/releases/20170818081937/public/uploads
+    ✔ 11 deploy@18.220.229.155 0.157s
+      12 ln -s /home/deploy/testapp/shared/public/assets /home/deploy/testapp/releases/20170818081937/public/assets
+    ✔ 12 deploy@18.220.229.155 0.155s
+00:11 bundler:install
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle install --path /home/deploy/testapp/shared/bundle --without development test --deployment --quiet
+    ✔ 01 deploy@18.220.229.155 2.724s
+00:14 deploy:assets:precompile
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake assets:precompile
+    ✔ 01 deploy@18.220.229.155 1.602s
+00:16 deploy:assets:backup_manifest
+      01 mkdir -p /home/deploy/testapp/releases/20170818081937/assets_manifest_backup
+    ✔ 01 deploy@18.220.229.155 0.153s
+      02 cp /home/deploy/testapp/releases/20170818081937/public/assets/.sprockets-manifest-ed003b8f6df3e0dd3a33b988555f8be1.json /home/deploy/testa…
+    ✔ 02 deploy@18.220.229.155 0.156s
+00:16 deploy:migrate
+      [deploy:migrate] Run `rake db:migrate`
+00:17 deploy:migrating
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake db:migrate
+    ✔ 01 deploy@18.220.229.155 1.598s
+00:18 deploy:symlink:release
+      01 ln -s /home/deploy/testapp/releases/20170818081937 /home/deploy/testapp/releases/current
+    ✔ 01 deploy@18.220.229.155 0.153s
+      02 mv /home/deploy/testapp/releases/current /home/deploy/testapp
+    ✔ 02 deploy@18.220.229.155 0.152s
+00:19 deploy:cleanup
+      Keeping 2 of 3 deployed releases on 18.220.229.155
+      01 rm -rf /home/deploy/testapp/releases/20170818073710
+    ✔ 01 deploy@18.220.229.155 0.177s
+00:19 deploy:log_revision
+      01 echo "Branch master (at cf7b121bddd103d4d9e86083d98ebe5b22624e61) deployed as release 20170818081937 by williamromero" >> /home/deploy/tes…
+    ✔ 01 deploy@18.220.229.155 0.156s
+00:20 puma:restart
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec pumactl -S /home/deploy/testapp/shared/tmp/pids/puma.state -F /home/deploy/testapp/shared/puma.rb…
+      01 Command restart sent success
+      01
+    ✔ 01 deploy@18.220.229.155 0.713s
+iMac-de-William:testapp williamromero$ cap production deploy
+rvm 1.29.2 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io/]
+ruby-2.4.0
+ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+00:00 git:wrapper
+      01 mkdir -p /tmp
+    ✔ 01 deploy@18.220.229.155 0.157s
+      Uploading /tmp/git-ssh-testapp-production-williamromero.sh 100.0%
+      02 chmod 700 /tmp/git-ssh-testapp-production-williamromero.sh
+    ✔ 02 deploy@18.220.229.155 0.160s
+00:00 git:check
+      01 git ls-remote git@github.com:williamromero/testapp.git HEAD
+      01 cf7b121bddd103d4d9e86083d98ebe5b22624e61 HEAD
+    ✔ 01 deploy@18.220.229.155 0.601s
+00:01 deploy:check:directories
+      01 mkdir -p /home/deploy/testapp/shared /home/deploy/testapp/releases
+    ✔ 01 deploy@18.220.229.155 0.154s
+00:01 deploy:check:linked_dirs
+      01 mkdir -p /home/deploy/testapp/shared/bin /home/deploy/testapp/shared/log /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/shared/…
+    ✔ 01 deploy@18.220.229.155 0.163s
+00:01 deploy:check:make_linked_dirs
+      01 mkdir -p /home/deploy/testapp/shared/config
+    ✔ 01 deploy@18.220.229.155 0.154s
+00:02 git:clone
+      The repository mirror is at /home/deploy/testapp/repo
+00:02 git:update
+      01 git remote set-url origin git@github.com:williamromero/testapp.git
+    ✔ 01 deploy@18.220.229.155 0.155s
+      02 git remote update --prune
+      02 Fetching origin
+      02
+    ✔ 02 deploy@18.220.229.155 0.583s
+00:03 git:create_release
+      01 mkdir -p /home/deploy/testapp/releases/20170818082021
+    ✔ 01 deploy@18.220.229.155 0.155s
+      02 git archive master | /usr/bin/env tar -x -f - -C /home/deploy/testapp/releases/20170818082021
+    ✔ 02 deploy@18.220.229.155 0.161s
+00:04 deploy:set_current_revision
+      01 echo "cf7b121bddd103d4d9e86083d98ebe5b22624e61" >> REVISION
+    ✔ 01 deploy@18.220.229.155 0.155s
+00:04 deploy:symlink:linked_files
+      01 mkdir -p /home/deploy/testapp/releases/20170818082021/config
+    ✔ 01 deploy@18.220.229.155 0.155s
+      02 rm /home/deploy/testapp/releases/20170818082021/config/database.yml
+    ✔ 02 deploy@18.220.229.155 0.157s
+      03 ln -s /home/deploy/testapp/shared/config/database.yml /home/deploy/testapp/releases/20170818082021/config/database.yml
+    ✔ 03 deploy@18.220.229.155 0.154s
+      04 ln -s /home/deploy/testapp/shared/config/application.yml /home/deploy/testapp/releases/20170818082021/config/application.yml
+    ✔ 04 deploy@18.220.229.155 0.154s
+00:06 deploy:symlink:linked_dirs
+      01 mkdir -p /home/deploy/testapp/releases/20170818082021 /home/deploy/testapp/releases/20170818082021/tmp /home/deploy/testapp/releases/20170…
+    ✔ 01 deploy@18.220.229.155 0.155s
+      02 rm -rf /home/deploy/testapp/releases/20170818082021/bin
+    ✔ 02 deploy@18.220.229.155 0.161s
+      03 ln -s /home/deploy/testapp/shared/bin /home/deploy/testapp/releases/20170818082021/bin
+    ✔ 03 deploy@18.220.229.155 0.158s
+      04 rm -rf /home/deploy/testapp/releases/20170818082021/log
+    ✔ 04 deploy@18.220.229.155 0.154s
+      05 ln -s /home/deploy/testapp/shared/log /home/deploy/testapp/releases/20170818082021/log
+    ✔ 05 deploy@18.220.229.155 0.154s
+      06 ln -s /home/deploy/testapp/shared/tmp/pids /home/deploy/testapp/releases/20170818082021/tmp/pids
+    ✔ 06 deploy@18.220.229.155 0.153s
+      07 ln -s /home/deploy/testapp/shared/tmp/cache /home/deploy/testapp/releases/20170818082021/tmp/cache
+    ✔ 07 deploy@18.220.229.155 0.156s
+      08 ln -s /home/deploy/testapp/shared/tmp/sockets /home/deploy/testapp/releases/20170818082021/tmp/sockets
+    ✔ 08 deploy@18.220.229.155 0.161s
+      09 ln -s /home/deploy/testapp/shared/vendor/bundle /home/deploy/testapp/releases/20170818082021/vendor/bundle
+    ✔ 09 deploy@18.220.229.155 0.154s
+      10 ln -s /home/deploy/testapp/shared/public/system /home/deploy/testapp/releases/20170818082021/public/system
+    ✔ 10 deploy@18.220.229.155 0.153s
+      11 ln -s /home/deploy/testapp/shared/public/uploads /home/deploy/testapp/releases/20170818082021/public/uploads
+    ✔ 11 deploy@18.220.229.155 0.157s
+      12 ln -s /home/deploy/testapp/shared/public/assets /home/deploy/testapp/releases/20170818082021/public/assets
+    ✔ 12 deploy@18.220.229.155 0.153s
+00:11 bundler:install
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle install --path /home/deploy/testapp/shared/bundle --without development test --deployment --quiet
+    ✔ 01 deploy@18.220.229.155 2.519s
+00:14 deploy:assets:precompile
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake assets:precompile
+    ✔ 01 deploy@18.220.229.155 1.616s
+00:16 deploy:assets:backup_manifest
+      01 mkdir -p /home/deploy/testapp/releases/20170818082021/assets_manifest_backup
+    ✔ 01 deploy@18.220.229.155 0.155s
+      02 cp /home/deploy/testapp/releases/20170818082021/public/assets/.sprockets-manifest-ed003b8f6df3e0dd3a33b988555f8be1.json /home/deploy/testa…
+    ✔ 02 deploy@18.220.229.155 0.155s
+00:16 deploy:migrate
+      [deploy:migrate] Run `rake db:migrate`
+00:16 deploy:migrating
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec rake db:migrate
+    ✔ 01 deploy@18.220.229.155 1.550s
+00:18 deploy:symlink:release
+      01 ln -s /home/deploy/testapp/releases/20170818082021 /home/deploy/testapp/releases/current
+    ✔ 01 deploy@18.220.229.155 0.157s
+      02 mv /home/deploy/testapp/releases/current /home/deploy/testapp
+    ✔ 02 deploy@18.220.229.155 0.155s
+00:18 deploy:cleanup
+      Keeping 2 of 3 deployed releases on 18.220.229.155
+      01 rm -rf /home/deploy/testapp/releases/20170818081122
+    ✔ 01 deploy@18.220.229.155 0.172s
+00:19 deploy:log_revision
+      01 echo "Branch master (at cf7b121bddd103d4d9e86083d98ebe5b22624e61) deployed as release 20170818082021 by williamromero" >> /home/deploy/tes…
+    ✔ 01 deploy@18.220.229.155 0.154s
+00:20 puma:start
+      using conf file /home/deploy/testapp/shared/puma.rb
+      01 ~/.rvm/bin/rvm ruby-2.4.0 do bundle exec puma -C /home/deploy/testapp/shared/puma.rb --daemon
+      01 Puma starting in single mode...
+      01
+      01 * Version 3.9.1 (ruby 2.4.0-p0), codename: Private Caller
+      01
+      01 * Min threads: 0, max threads: 8
+      01
+      01 * Environment: production
+      01
+      01 * Daemonizing...
+      01
+    ✔ 01 deploy@18.220.229.155 0.662s
+iMac-de-William:testapp williamromero$ 
